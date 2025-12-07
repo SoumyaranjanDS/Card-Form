@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Profile Cards — Mini App</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- FULLSCREEN BLOB LOADING SCREEN -->
+  <div id="siteLoader" class="loader">
+    <div class="loader-inner">
+      <div class="blob"></div>
+      <div class="loader-text">Loading...</div>
+    </div>
+  </div>
+
+  <header class="topbar">
+    <div class="brand">Cards</div>
+  </header>
+
+  <!-- GLASS FORM -->
+  <form id="cardForm" class="glass hidden" aria-hidden="true">
+    <h2>New Contact</h2>
+
+    <label>Image URL
+      <input id="imgUrl" type="text" placeholder="https://example.com/photo.png" />
+    </label>
+    <label>Full name
+      <input id="fullName" type="text" placeholder="Enter full name" />
+    </label>
+    <label>Hometown
+      <input id="hometown" type="text" placeholder="Enter hometown" />
+    </label>
+    <label>Purpose
+      <input id="purpose" type="text" placeholder="Purpose" />
+    </label>
+
+    <fieldset id="categoryField">
+      <legend>Category</legend>
+      <label><input name="category" type="radio" value="Emergency" /> Emergency</label>
+      <label><input name="category" type="radio" value="Important" /> Important</label>
+      <label><input name="category" type="radio" value="Urgent" /> Urgent</label>
+      <label><input name="category" type="radio" value="No Rush" /> No Rush</label>
+    </fieldset>
+
+    <div class="form-actions">
+      <button class="btn primary" id="createBtn">Create</button>
+      <button type="button" class="btn danger" id="cancelBtn">Cancel</button>
+    </div>
+
+    <p id="formError" class="error"></p>
+  </form>
+
+  <!-- APP -->
+  <main class="app">
+    
+    <!-- Floating Buttons -->
+    <div class="side-buttons">
+      <button id="plus"><i class="ri-add-large-line"></i></button>
+      <button id="upBtn"><i class="ri-arrow-up-long-line"></i></button>
+      <button id="downBtn"><i class="ri-arrow-down-long-line"></i></button>
+    </div>
+
+    <!-- Main Panel -->
+    <section class="panel">
+      <div class="top-controls">
+        <input id="searchBar" type="search" placeholder="Search by name..." />
+
+        <div class="filters">
+          <button data-filter="All" class="filter active">All</button>
+          <button data-filter="Emergency" class="filter">Emergency</button>
+          <button data-filter="Important" class="filter">Important</button>
+          <button data-filter="Urgent" class="filter">Urgent</button>
+          <button data-filter="No Rush" class="filter">No Rush</button>
+        </div>
+      </div>
+
+      <div id="cardStack" class="card-stack"></div>
+    </section>
+  </main>
+
+  <!-- MODAL -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content glass">
+      <button id="modalClose" class="modal-close"><i class="ri-close-line"></i></button>
+
+      <img id="modalImg" class="modal-img" />
+      <h3 id="modalName"></h3>
+      <p><strong>Hometown:</strong> <span id="modalTown"></span></p>
+      <p><strong>Purpose:</strong> <span id="modalPurpose"></span></p>
+      <p><strong>Category:</strong> <span id="modalCategory"></span></p>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

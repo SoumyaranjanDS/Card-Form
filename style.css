@@ -1,0 +1,393 @@
+:root{
+  --bg1: #2bff60;
+  --bg2: #3eba00;
+  --bg3: #0e5917;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, sans-serif;
+    overflow-x: hidden;
+    background-color: linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 45%, var(--bg3) 100%);
+    color: white;
+}
+
+/* SHERYIANS-STYLE BLOB BACKGROUND */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: #0f0f1a;
+    z-index: -5;
+}
+
+.blob {
+    width: 180px;
+    height: 180px;
+    background: linear-gradient(135deg, #7b4bff, #ff4dd6);
+    border-radius: 50%;
+    filter: blur(60px);
+    animation: blobAnim 6s infinite alternate ease-in-out;
+}
+
+@keyframes blobAnim {
+    0% {
+        transform: translate(-40px, -40px) scale(1);
+    }
+
+    100% {
+        transform: translate(60px, 60px) scale(1.3);
+    }
+}
+
+/* LOADER */
+.loader {
+    position: fixed;
+    inset: 0;
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    background: rgba(0, 0, 0, 0.4);
+    transition: opacity .35s;
+}
+
+.loader.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loader-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.loader-text {
+    color: #ddd;
+    font-size: 14px;
+}
+
+/* HEADER */
+.topbar {
+    padding: 14px 18px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.brand {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+/* GLASS FORM */
+.glass {
+    backdrop-filter: blur(10px) saturate(140%);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 14px;
+    padding: 18px;
+    position: fixed;
+    width: 360px;
+    max-width: 90%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 50;
+    transition: opacity .3s, transform .3s;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -48%) scale(.96);
+}
+
+label {
+    font-size: 14px;
+    color: #ccc;
+    display: block;
+    margin-top: 10px;
+}
+
+input[type=text],
+input[type=search] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 6px;
+    background: rgba(255, 255, 255, 0.09);
+    color: #fff;
+}
+
+fieldset {
+    border: none;
+    margin-top: 12px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+legend {
+    color: #ccc;
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.primary {
+    background: #6d5dff;
+    color: #fff;
+}
+
+.danger {
+    background: #ff4c4c;
+    color: #fff;
+}
+
+.error {
+    color: #ff7a7a;
+    font-size: 13px;
+    margin-top: 6px;
+    height: 14px;
+}
+
+/* APP LAYOUT */
+.app {
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.side-buttons {
+    position: fixed;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.side-buttons button {
+    height: 46px;
+    width: 46px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 20px;
+    backdrop-filter: blur(8px);
+    transition: transform .2s;
+}
+
+.side-buttons button:hover {
+    transform: translateY(-4px);
+}
+
+/* PANEL */
+.panel {
+    width: 360px;
+    max-width: 90%;
+}
+
+.top-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+#searchBar {
+    width: 100%;
+    padding: 10px;
+    border-radius: 12px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+/* FILTERS */
+.filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.filter {
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    border: none;
+    color: #ccc;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.filter.active {
+    background: #6d5dff;
+    color: #fff;
+}
+
+/* CARD STACK FIXED ALIGNMENT */
+.card-stack {
+    position: relative;
+    min-height: 260px;
+}
+
+/* CARD */
+.card {
+    position: absolute;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 18px;
+    display: flex;
+    gap: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transform: translateY(14px) scale(.97);
+    transition: opacity .35s, transform .35s;
+}
+
+.card.visible {
+    opacity: 1;
+    transform: none;
+}
+
+.card:nth-child(1) {
+    z-index: 3;
+    top: 0;
+}
+
+.card:nth-child(2) {
+    z-index: 2;
+    top: 18px;
+    opacity: .8;
+}
+
+.card:nth-child(3) {
+    z-index: 1;
+    top: 36px;
+    opacity: .6;
+}
+
+.profile-img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+}
+
+.info p {
+    font-size: 12px;
+    color: #aaa;
+}
+
+.info h4 {
+    font-size: 14px;
+}
+
+.btns {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btns button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 999px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #fff;
+}
+
+.call {
+    background: #6d5dff;
+}
+
+.msg {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* CARD BOTTOM ACTIONS */
+.card-actions {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+}
+
+.card-actions button {
+    background: transparent;
+    border: none;
+    color: #ccc;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* MODAL */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    text-align: center;
+    width: 300px;
+}
+
+.modal-img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: 0;
+    color: #fff;
+    font-size: 22px;
+}
